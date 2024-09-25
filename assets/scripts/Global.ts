@@ -1,12 +1,20 @@
+import {PlayerParameters} from "db://assets/scripts/PlayerParameters";
+
 export default class Global {
     private static _instance: Global
-
-    private _speedCar = 0
+    private _playerParameters = new PlayerParameters();
 
     static get instance() { return this._instance || (this._instance = new Global()) }
-    static get speedCar () { return Global.instance._speedCar }
+    static get playerParameters () { return Global.instance._playerParameters }
 
-    static set speedCar (number) { Global.instance._speedCar = number }
+    static changeSpeedMovement(count: number) {
+        Global.playerParameters.speedMovement = count;
+    }
+
+    static addCoinBalance(count: number) {
+        Global.playerParameters.coinBalance += count;
+    }
+
 }
 
 
