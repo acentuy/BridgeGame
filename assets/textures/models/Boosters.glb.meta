@@ -1,0 +1,122 @@
+{
+  "ver": "2.3.1",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee",
+  "files": [],
+  "subMetas": {
+    "77783": {
+      "importer": "gltf-mesh",
+      "uuid": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@77783",
+      "displayName": "",
+      "id": "77783",
+      "name": "booster_005.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d04de": {
+      "importer": "gltf-embeded-image",
+      "uuid": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@d04de",
+      "displayName": "",
+      "id": "d04de",
+      "name": "pattern.image",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".json",
+        ".png"
+      ],
+      "subMetas": {}
+    },
+    "e39f7": {
+      "importer": "texture",
+      "uuid": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@e39f7",
+      "displayName": "",
+      "id": "e39f7",
+      "name": "UnnamedTexture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "linear",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@d04de"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b4e6b": {
+      "importer": "gltf-material",
+      "uuid": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@b4e6b",
+      "displayName": "",
+      "id": "b4e6b",
+      "name": "Material.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4aaf2": {
+      "importer": "gltf-scene",
+      "uuid": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@4aaf2",
+      "displayName": "",
+      "id": "4aaf2",
+      "name": "Boosters.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "pattern",
+        "uri": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@d04de"
+      }
+    ],
+    "redirect": "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@4aaf2",
+    "assetFinder": {
+      "meshes": [
+        "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@77783"
+      ],
+      "skeletons": [],
+      "textures": [
+        "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@e39f7"
+      ],
+      "materials": [
+        "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@b4e6b"
+      ],
+      "scenes": [
+        "1e9fb79e-f073-41cb-8476-e10a5a93e2ee@4aaf2"
+      ]
+    }
+  }
+}
