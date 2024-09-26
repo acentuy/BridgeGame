@@ -13,7 +13,7 @@ export class Redirection extends Component {
         } else if (sys.platform === sys.Platform.IOS) {
             sys.openURL(iosStoreURL);
         } else {
-            console.log("Unknown platform");
+            console.error("Unknown platform");
         }
     }
 }

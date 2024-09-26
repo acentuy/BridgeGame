@@ -1,5 +1,5 @@
 import {PlayerParameters} from "db://assets/scripts/PlayerParameters";
-
+import { EventTarget } from 'cc';
 export default class Global {
     private static _instance: Global
     private _playerParameters = new PlayerParameters();
@@ -15,6 +15,10 @@ export default class Global {
         Global.playerParameters.coinBalance += count;
     }
 
+    static readonly EVENTS = {
+            ADD_COIN: "add-coin",
+    };
+    static GlobalEvent = new EventTarget();
 }
 
 
