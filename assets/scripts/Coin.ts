@@ -19,7 +19,7 @@ export default class Coin extends Component {
     private _onTriggerEnter() {
         Global.addCoinBalance(1);
         this._collider.off('onTriggerEnter', this._onTriggerEnter, this);
-        Global.GlobalEvent.emit(Global.EVENTS.ADD_COIN);
+        Global.globalEvent.emit(Global.EVENTS.ADD_COIN);
         this.node.destroy();
     }
 }

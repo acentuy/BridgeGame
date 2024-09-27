@@ -6,7 +6,6 @@ export class UnstableBeams extends Component {
     @property(Vec3) private initialForce: Vec3 = new Vec3(0, -100, 0);
     private _rigidBody: RigidBody = null;
     private _collider: Collider = null;
-    private _mainCamera: Camera | null = null;
 
     onLoad() {
         this._rigidBody = this.getComponent(RigidBody);

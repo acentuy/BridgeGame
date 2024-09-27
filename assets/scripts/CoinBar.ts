@@ -8,17 +8,14 @@ export class CoinBar extends Component {
 
     onLoad() {
         this._loadDigitSprites();
-        Global.GlobalEvent.on(Global.EVENTS.ADD_COIN, this._setNumber, this);
+        Global.globalEvent.on(Global.EVENTS.ADD_COIN, this._setNumber, this);
     }
 
     private _loadDigitSprites() {
         const path: string = 'UI/numbers';
         resources.loadDir(path, SpriteFrame, (err, assets: SpriteFrame[]) => {
-            if (!err) {
-                this._digitSprites = assets;
-            } else {
-                console.error('Failed to load digit sprites:', err);
-            }
+            if (!err) this._digitSprites = assets;
+            else console.error('Failed to load digit sprites:', err);
         });
     }
 

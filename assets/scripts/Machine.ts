@@ -6,14 +6,16 @@ const { ccclass, property } = _decorator;
 export class Machine extends Component {
     @property private delta: number = 10;
     private startPosY: number = 0;
+    onLoad() {
+        Global.machine = this.node;
+    }
     start() {
         this.startPosY = this.node.position.y;
     }
 
     update(deltaTime: number) {
         if (Math.abs(this.node.position.y - this.startPosY) > this.delta) {
-            console.log("END")
-            Global.GlobalEvent.emit(Global.EVENTS.END_GAME);
+            Global.globalEvent.emit(Global.EVENTS.END_GAME);
         }
     }
 }
