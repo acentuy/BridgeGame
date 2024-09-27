@@ -2,12 +2,15 @@ import {PlayerParameters} from "db://assets/scripts/PlayerParameters";
 import { EventTarget, Node } from 'cc';
 export default class Global {
     private static _instance: Global
+    private readonly _failTimer: number  = 4;
+
     private _playerParameters = new PlayerParameters();
     private _machine = new Node();
 
     static get instance() { return this._instance || (this._instance = new Global()) }
     static get playerParameters () { return Global.instance._playerParameters }
     static get machine () { return Global.instance._machine }
+    static get failTimer () { return Global.instance._failTimer }
 
     static set machine (node) { Global.instance._machine = node }
 

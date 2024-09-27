@@ -26,11 +26,11 @@ export class Joystick extends Component {
         let newPos = this.handle.position.clone();
         newPos.y += delta.y;
 
-        if (newPos.y > this._maxMoveDistance) {
+        if (newPos.y > this._maxMoveDistance)
             newPos.y = this._maxMoveDistance;
-        } else if (newPos.y < -this._maxMoveDistance) {
+        else if (newPos.y < -this._maxMoveDistance)
             newPos.y = -this._maxMoveDistance;
-        }
+
         this.handle.setPosition(newPos.x, newPos.y, newPos.z);
 
         Global.playerParameters.speedMovement = Math.pow((newPos.y + this._maxMoveDistance) / (2 * this._maxMoveDistance), 3);

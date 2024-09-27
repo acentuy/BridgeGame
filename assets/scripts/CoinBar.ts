@@ -14,8 +14,10 @@ export class CoinBar extends Component {
     private _loadDigitSprites() {
         const path: string = 'UI/numbers';
         resources.loadDir(path, SpriteFrame, (err, assets: SpriteFrame[]) => {
-            if (!err) this._digitSprites = assets;
-            else console.error('Failed to load digit sprites:', err);
+            if (!err)
+                this._digitSprites = assets;
+            else
+                console.error('Failed to load digit sprites:', err);
         });
     }
 

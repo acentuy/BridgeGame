@@ -8,13 +8,13 @@ export class Redirection extends Component {
         const androidStoreURL = "https://play.google.com/store/apps/details?id=com.LuB.DeliveryConstruct&hl=en";
         const iosStoreURL = "https://apps.apple.com/us/app/ride-master-car-builder-game/id6449224139";
 
-        if (sys.platform === sys.Platform.ANDROID) {
+        if (sys.platform === sys.Platform.ANDROID)
             sys.openURL(androidStoreURL);
-        } else if (sys.platform === sys.Platform.IOS) {
+        else if (sys.platform === sys.Platform.IOS)
             sys.openURL(iosStoreURL);
-        } else {
+        else
             console.error("Unknown platform");
-        }
+
     }
 }
 
