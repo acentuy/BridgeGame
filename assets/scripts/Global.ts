@@ -7,16 +7,13 @@ export default class Global {
     static get instance() { return this._instance || (this._instance = new Global()) }
     static get playerParameters () { return Global.instance._playerParameters }
 
-    static changeSpeedMovement(count: number) {
-        Global.playerParameters.speedMovement = count;
-    }
-
     static addCoinBalance(count: number) {
         Global.playerParameters.coinBalance += count;
     }
 
     static readonly EVENTS = {
             ADD_COIN: "add-coin",
+            END_GAME: "end-game"
     };
     static GlobalEvent = new EventTarget();
 }

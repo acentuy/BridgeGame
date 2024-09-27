@@ -4,9 +4,9 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Movement')
 export class Movement extends Component {
-    private _speed: number = 100;
+    @property private speed: number = 60;
     update(deltaTime: number) {
-        const movement = new Vec3(1, 0, 0).multiplyScalar(Global.playerParameters.speedMovement * deltaTime * this._speed);
+        const movement = new Vec3(1, 0, 0).multiplyScalar(Global.playerParameters.speedMovement * deltaTime * this.speed);
         this.node.translate(movement);
     }
 }

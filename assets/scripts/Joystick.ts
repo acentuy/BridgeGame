@@ -33,12 +33,12 @@ export class Joystick extends Component {
         }
         this.handle.setPosition(newPos.x, newPos.y, newPos.z);
 
-        Global.changeSpeedMovement(Math.pow((newPos.y + this._maxMoveDistance) / (2 * this._maxMoveDistance), 3));
+        Global.playerParameters.speedMovement = Math.pow((newPos.y + this._maxMoveDistance) / (2 * this._maxMoveDistance), 3);
     }
 
     private _onTouchEnd() {
         this.handle.setPosition(this._startPos);
-        Global.changeSpeedMovement(0);
+        Global.playerParameters.speedMovement = 0;
     }
 
     private _stopAnimation() {
