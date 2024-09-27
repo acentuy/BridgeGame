@@ -5,9 +5,9 @@ const { ccclass, property } = _decorator;
 @ccclass('Joystick')
 export class Joystick extends Component {
 
-    @property(Node) public handle: Node = null;
-    @property(Node) public neon: Node = null;
-    @property(Node) public cursor: Node = null;
+    @property(Node) private handle: Node = null;
+    @property(Node) private neon: Node = null;
+    @property(Node) private cursor: Node = null;
 
     private _startPos: Vec3 = new Vec3();
     private _maxMoveDistance: number = 110;
