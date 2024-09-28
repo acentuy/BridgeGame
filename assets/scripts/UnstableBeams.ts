@@ -17,13 +17,11 @@ export class UnstableBeams extends Component {
         this._collider.off('onTriggerEnter', this._onTriggerEnter, this);
         this._collider.isTrigger = false;
         this._rigidBody.type = RigidBody.Type.DYNAMIC;
-        this._rigidBody.applyForce(this.initialForce);
-
-        this.scheduleOnce(this._destroyNode, 8);
+        this.scheduleOnce(this._destroyNode, 0.1);
     }
 
     private _destroyNode() {
-        this.node.destroy();
+        this._rigidBody.applyForce(this.initialForce);
     }
 }
 

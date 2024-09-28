@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, RigidBody, Vec3, Collider } from 'cc';
+import { _decorator, Component, Node, RigidBody, Vec3, Collider, math } from 'cc';
 import Global from "db://assets/scripts/Global";
 const { ccclass, property } = _decorator;
 
@@ -19,7 +19,7 @@ export class Machine extends Component {
     }
 
     update(deltaTime: number) {
-        if (Math.abs(this.node.position.y - this._startPosY) > this.delta) {
+        if (this.node.position.y - this._startPosY < -this.delta) {
             this.node.emit(this._LOCAL_END_GAME);
         }
         else {
@@ -29,6 +29,7 @@ export class Machine extends Component {
     }
 
     private _endGame() {
+        this.node.getComponent(RigidBody).type = RigidBody.Type.KINEMATIC;
         this.node.getComponent(Collider).enabled = false;
         this.node.children.forEach(child => {
             child.getComponent(Collider).enabled = true;
@@ -38,6 +39,7 @@ export class Machine extends Component {
     }
 
     private _stopMachine() {
+        Global.globalEvent.emit(Global.EVENTS.END_GAME);
         this.node.children.forEach(child => {
             child.getComponent(RigidBody).type = RigidBody.Type.STATIC;
         })
