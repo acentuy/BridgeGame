@@ -32,7 +32,7 @@ export class FailScreen extends Component {
 
         tween(this.newButton)
             .parallel(
-                tween().to(1, { scale: new Vec3(1, 1, 1) }, { easing: 'backOut' }),
+                tween().to(1, { scale: new Vec3(0.5, 0.5, 0.5) }, { easing: 'backOut' }),
                 tween().to(1, { eulerAngles: new Vec3(0, 0, 0) }, { easing: 'quadInOut' })
             )
             .start();
@@ -48,8 +48,8 @@ export class FailScreen extends Component {
         const pulseTween = tween(this.newButton)
             .repeatForever(
                 tween()
-                    .to(0.5, { scale: new Vec3(1.1, 1.1, 1.1) }, { easing: 'quadInOut' })
-                    .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: 'quadInOut' })
+                    .to(0.5, { scale: new Vec3(0.7, 0.7, 0.7) }, { easing: 'quadInOut' })
+                    .to(0.5, { scale: new Vec3(0.5, 0.5, 0.5) }, { easing: 'quadInOut' })
             );
         pulseTween.start();
     }
