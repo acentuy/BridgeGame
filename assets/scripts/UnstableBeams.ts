@@ -7,6 +7,7 @@ export class UnstableBeams extends Component {
     @property private delay: number = 0.3;
     private _rigidBody: RigidBody = null;
     private _collider: Collider = null;
+    private readonly _forceVec: Vec3 = new Vec3(0, -10000, 0);
 
     onLoad() {
         this._rigidBody = this.getComponent(RigidBody);
@@ -23,7 +24,7 @@ export class UnstableBeams extends Component {
 
     private _fallBeam() {
         this._rigidBody.type = RigidBody.Type.DYNAMIC;
-        this._rigidBody.applyForce( new Vec3(0, -5000, 0));
+        this._rigidBody.applyForce(this._forceVec);
     }
 
     private _endGame() {
