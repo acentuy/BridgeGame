@@ -2,7 +2,7 @@ import {PlayerParameters} from "db://assets/scripts/PlayerParameters";
 import { EventTarget, Node } from 'cc';
 export default class Global {
     private static _instance: Global
-    private readonly _failTimer: number  = 4;
+    private readonly _failTimer: number  = 2;
 
     private _playerParameters = new PlayerParameters();
     private _machine = new Node();
@@ -16,12 +16,14 @@ export default class Global {
 
     static addCoinBalance(count: number) {
         Global.playerParameters.coinBalance += count;
+        Global.globalEvent.emit(Global.EVENTS.ADD_COIN, Global.playerParameters.coinBalance);
     }
 
     static readonly EVENTS = {
             ADD_COIN: "add-coin",
             END_GAME: "end-game"
     };
+
     static globalEvent = new EventTarget();
 }
 

@@ -4,7 +4,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass('CoinBar')
 export class CoinBar extends Component {
-    private _digitSprites: SpriteFrame[] = [];
+    private _digitSprites: Record<string, SpriteFrame> = {};
 
     onLoad() {
         this._loadDigitSprites();
@@ -14,26 +14,26 @@ export class CoinBar extends Component {
     private _loadDigitSprites() {
         const path: string = 'UI/numbers';
         resources.loadDir(path, SpriteFrame, (err, assets: SpriteFrame[]) => {
-            if (!err)
-                this._digitSprites = assets;
-            else
+            if (!err) {
+                assets.forEach(spriteFrame => {
+                    const name = spriteFrame.name;
+                    this._digitSprites[name] = spriteFrame;
+                });
+            }
+            else {
                 console.error('Failed to load digit sprites:', err);
+            }
         });
     }
 
-    private _setNumber() {
+    private _setNumber(count: number) {
         this.node.removeAllChildren();
-
-        const digits = Global.playerParameters.coinBalance.toString().split('');
+        const digits = count.toString().split('');
 
         digits.forEach(digit => {
             const digitNode = new Node();
-            const sprite = digitNode.addComponent(Sprite);
-            const digitIndex = parseInt(digit);
-
-            sprite.spriteFrame = this._digitSprites[digitIndex];
+            digitNode.addComponent(Sprite).spriteFrame = this._digitSprites[digit];
             digitNode.layer = Layers.Enum.UI_2D;
-
             this.node.addChild(digitNode);
         });
     }

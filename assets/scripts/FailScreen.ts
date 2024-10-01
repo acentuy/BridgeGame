@@ -5,65 +5,51 @@ const { ccclass, property } = _decorator;
 
 @ccclass('FailScreen')
 export class FailScreen extends Component {
-    @property(Node) private endGameSprite: Node = null; // Спрайт завершения игры
-    @property(Node) private darkOverlay: Node = null; // Затемнение экрана
-    @property(Node) private oldButton: Node = null; // Исчезающая кнопка
-    @property(Node) private newButton: Node = null; // Новая кнопка, появляющаяся в центре
+    @property(Node) private endGameSprite: Node = null;
+    @property(Node) private darkOverlay: Node = null;
+    @property(Node) private newButton: Node = null;
 
     start() {
         Global.globalEvent.on(Global.EVENTS.END_GAME,this._showEndGameScreen, this);
     }
 
     private _showEndGameScreen() {
-        this.node.active = true;
-        this.endGameSprite.active = true;
+        this.darkOverlay.active = true;
         tween(this.endGameSprite.getComponent(UIOpacity))
             .to(1, { opacity: 255 }, { easing: 'quadIn' })
             .start();
-        this.darkOverlay.active = true;
         tween(this.darkOverlay.getComponent(UIOpacity))
             .to(2, { opacity: 175 }, { easing: 'quadIn' })
             .start();
-        tween(this.oldButton.getComponent(UIOpacity))
-            .to(1, { opacity: 0 }, { easing: 'quadOut' })
-            .call(() => {
-                this.oldButton.active = false;
-                this._showNewButton();
-            })
-            .start();
+        this._showNewButton();
     }
 
     private _showNewButton() {
-        // 4. Появление новой кнопки в центре с анимацией scale, rotation, opacity
-        this.newButton.active = true;
-        this.newButton.setScale(new Vec3(0, 0, 0)); // Начальный размер
-        this.newButton.eulerAngles = new Vec3(0, 0, 45); // Начальное вращение
+        this.newButton.setScale(new Vec3(0, 0, 0));
+        this.newButton.eulerAngles = new Vec3(0, 0, 45);
         const newButtonOpacity = this.newButton.getComponent(UIOpacity);
-        newButtonOpacity.opacity = 0; // Начальная прозрачность
+        newButtonOpacity.opacity = 0;
 
-        tween(this.newButton) // Анимация масштаба и вращения узла
+        tween(this.newButton)
             .parallel(
-                tween().to(1, { scale: new Vec3(1, 1, 1) }, { easing: 'backOut' }), // Увеличение масштаба
-                tween().to(1, { eulerAngles: new Vec3(0, 0, 0) }, { easing: 'quadInOut' }) // Вращение
+                tween().to(1, { scale: new Vec3(1, 1, 1) }, { easing: 'backOut' }),
+                tween().to(1, { eulerAngles: new Vec3(0, 0, 0) }, { easing: 'quadInOut' })
             )
             .start();
-
-        tween(newButtonOpacity) // Анимация прозрачности компонента UIOpacity
+        tween(newButtonOpacity)
             .to(1, { opacity: 255 }, { easing: 'quadInOut' })
             .call(() => {
-                this._startButtonPulse(); // Начинаем пульсацию кнопки
+                this._startButtonPulse();
             })
             .start();
     }
 
-
     private _startButtonPulse() {
-        // 5. Пульсирование кнопки (увеличение и уменьшение размера)
         const pulseTween = tween(this.newButton)
             .repeatForever(
                 tween()
-                    .to(0.5, { scale: new Vec3(1.1, 1.1, 1.1) }, { easing: 'quadInOut' }) // Увеличение
-                    .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: 'quadInOut' }) // Уменьшение
+                    .to(0.5, { scale: new Vec3(1.1, 1.1, 1.1) }, { easing: 'quadInOut' })
+                    .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: 'quadInOut' })
             );
         pulseTween.start();
     }

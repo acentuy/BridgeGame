@@ -1,9 +1,10 @@
-import { _decorator, Component, RigidBody, Collider, ITriggerEvent, Camera, Vec3 } from 'cc';
+import { _decorator, Component, RigidBody, Collider, ITriggerEvent, Vec3 } from 'cc';
+import Global from "db://assets/scripts/Global";
 const { ccclass, property } = _decorator;
 
 @ccclass('UnstableBeams')
 export class UnstableBeams extends Component {
-    @property(Vec3) private initialForce: Vec3 = new Vec3(0, -100, 0);
+    @property private delay: number = 0.3;
     private _rigidBody: RigidBody = null;
     private _collider: Collider = null;
 
@@ -11,17 +12,22 @@ export class UnstableBeams extends Component {
         this._rigidBody = this.getComponent(RigidBody);
         this._collider = this.getComponent(Collider);
         this._collider.on('onTriggerEnter', this._onTriggerEnter, this);
+        Global.globalEvent.on(Global.EVENTS.END_GAME,this._endGame, this);
     }
 
     private _onTriggerEnter(event: ITriggerEvent) {
         this._collider.off('onTriggerEnter', this._onTriggerEnter, this);
         this._collider.isTrigger = false;
-        this._rigidBody.type = RigidBody.Type.DYNAMIC;
-        this.scheduleOnce(this._destroyNode, 0.1);
+        this.scheduleOnce(this._fallBeam, this.delay);
     }
 
-    private _destroyNode() {
-        this._rigidBody.applyForce(this.initialForce);
+    private _fallBeam() {
+        this._rigidBody.type = RigidBody.Type.DYNAMIC;
+        this._rigidBody.applyForce( new Vec3(0, -5000, 0));
+    }
+
+    private _endGame() {
+        this._rigidBody.type = RigidBody.Type.KINEMATIC;
     }
 }
 

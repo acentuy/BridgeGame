@@ -10,7 +10,7 @@ export class Camera extends Component {
 
     start() {
         this._target = Global.machine;
-        this._offset =  this.node.getWorldPosition().subtract(this._target.getWorldPosition());
+        this._offset = this.node.getWorldPosition().subtract(this._target.getWorldPosition());
     }
 
     update(deltaTime: number) {

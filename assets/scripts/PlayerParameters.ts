@@ -1,5 +1,3 @@
-import { Vec3 } from 'cc';
-
 export class PlayerParameters {
 
     private _speedMovement = 0;

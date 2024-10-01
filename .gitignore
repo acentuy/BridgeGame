@@ -4,8 +4,9 @@
 #///////////////////////////
 library/
 temp/
-local/
 build/
+build-templates/
+local/
 profiles/
 native
 #//////////////////////////

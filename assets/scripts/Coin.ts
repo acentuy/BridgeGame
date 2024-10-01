@@ -1,10 +1,11 @@
-import { _decorator, Component, Node, Collider, Vec3, math, systemEvent } from 'cc';
+import { _decorator, Component, Node, Collider, Vec3, math, ParticleSystem } from 'cc';
 import Global from "db://assets/scripts/Global";
 const { Quat } = math;
 const { ccclass, property } = _decorator;
 
 @ccclass('Coin')
 export default class Coin extends Component {
+    @property(ParticleSystem) private particleSystem: ParticleSystem = null;
     private _collider: Collider = null;
     private _rotationSpeed: number = 100;
 
@@ -13,14 +14,15 @@ export default class Coin extends Component {
         this._collider.on('onTriggerEnter', this._onTriggerEnter, this);
     }
     update(deltaTime: number) {
-        this.node.rotate(Quat.fromEuler(new Quat(), 0, this._rotationSpeed * deltaTime, 0));
+        if (this.node.active)
+            this.node.rotate(Quat.fromEuler(new Quat(), 0, 0, this._rotationSpeed * deltaTime));
     }
 
-    private _onTriggerEnter() {
-        Global.addCoinBalance(1);
+    private _onTriggerEnter() {;
         this._collider.off('onTriggerEnter', this._onTriggerEnter, this);
-        Global.globalEvent.emit(Global.EVENTS.ADD_COIN);
-        this.node.destroy();
+        this.particleSystem.play();
+        Global.addCoinBalance(1)
+        this.node.active = false;
     }
 }
 

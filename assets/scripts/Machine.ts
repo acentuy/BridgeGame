@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, RigidBody, Vec3, Collider, math } from 'cc';
+import { _decorator, Component, RigidBody, Vec3, Collider } from 'cc';
 import Global from "db://assets/scripts/Global";
 const { ccclass, property } = _decorator;
 
@@ -23,7 +23,7 @@ export class Machine extends Component {
             this.node.emit(this._LOCAL_END_GAME);
         }
         else {
-            const movement = new Vec3(1, 0, 0).multiplyScalar(Global.playerParameters.speedMovement * deltaTime * this.speed);
+            const movement = new Vec3(1, 0, 0).multiplyScalar(Global.playerParameters.speedMovement * deltaTime * Math.abs(this.speed - Math.abs(this.node.position.y)));
             this.node.translate(movement);
         }
     }

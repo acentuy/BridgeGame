@@ -16,7 +16,7 @@ export class Joystick extends Component {
     onLoad() {
         this._anim = this.getComponent(Animation);
         this._startPos = this.handle.position.clone();
-        this.handle.on(Input.EventType.TOUCH_MOVE, this._onTouchMove, this);//отписаться
+        this.handle.on(Input.EventType.TOUCH_MOVE, this._onTouchMove, this);
         this.handle.on(Input.EventType.TOUCH_END, this._onTouchEnd, this);
         this.handle.on(Input.EventType.TOUCH_CANCEL, this._onTouchEnd, this);
         this.handle.once(Input.EventType.TOUCH_START, this._stopAnimation, this);
