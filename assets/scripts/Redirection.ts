@@ -12,9 +12,15 @@ export class Redirection extends Component {
             sys.openURL(androidStoreURL);
         else if (sys.platform === sys.Platform.IOS)
             sys.openURL(iosStoreURL);
-        else
-            console.error("Unknown platform");
-
+        else {
+            const userAgent = navigator.userAgent || (window as any).vendor || (window as any).opera;
+            if (/android/i.test(userAgent))
+                sys.openURL(androidStoreURL);
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream)
+                sys.openURL(iosStoreURL);
+            else
+                console.error("Unknown platform or desktop");
+        }
     }
 }
 
